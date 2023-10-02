@@ -1,26 +1,30 @@
 import React from "react";
-import styles from "./Cards.module.scss";
 import { Link } from "react-router-dom";
+import styles from "./Cards.module.scss";
+import CardDetails from "./CardDetails";
 
-const Cards = ({ results, page }) => {
+const Card = ({ page, results }) => {
   let display;
 
   if (results) {
     display = results.map((x) => {
-      let { id, name, image, location, status } = x;
+      let { id, image, name, status, location } = x;
+
       return (
         <Link
           style={{ textDecoration: "none" }}
           to={`${page}${id}`}
           key={id}
-          className="col-4 mb-4 position-relative text-dark"
+          className="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 position-relative text-dark"
         >
-          <div className={styles.cards}>
-            <img src={image} alt="" className={`${styles.img} img-fluid`} />
-            <div style={{ padding: "10px" }} className="content">
-              <div className="fs-4 fw-bold mb-4">{name}</div>
+          <div
+            className={`${styles.card} d-flex flex-column justify-content-center`}
+          >
+            <img className={`${styles.img} img-fluid`} src={image} alt="" />
+            <div className={`${styles.content}`}>
+              <div className="fs-5 fw-bold mb-4">{name}</div>
               <div className="">
-                <div className="fs-6">Last location</div>
+                <div className="fs-6 fw-normal">Last Location</div>
                 <div className="fs-5">{location.name}</div>
               </div>
             </div>
@@ -57,10 +61,10 @@ const Cards = ({ results, page }) => {
       );
     });
   } else {
-    display = "No characters found :/";
+    display = "No Characters Found :/";
   }
 
   return <>{display}</>;
 };
 
-export default Cards;
+export default Card;
