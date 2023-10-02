@@ -1,37 +1,52 @@
 import React from "react";
+import { NavLink, Link } from "react-router-dom";
+import "../../App.css"
 
 const Navbar = () => {
   return (
-    <nav class="Navbar Navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="Navbar-brand" href="#">
-          Navbar
-        </a>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div className="container">
+        <Link to="/" className="navbar-brand fs-3 ubuntu">
+          Rick & Morty <span className="text-primary">WiKi</span>
+        </Link>
+        <style jsx>{`
+          button[aria-expanded="false"] > .close {
+            display: none;
+          }
+          button[aria-expanded="true"] > .open {
+            display: none;
+          }
+        `}</style>
         <button
-          class="Navbar-toggler"
+          className="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#NavbarNavAltMarkup"
-          aria-controls="NavbarNavAltMarkup"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="Navbar-toggler-icon"></span>
+          <span class="fas fa-bars open text-dark"></span>
+          <span class="fas fa-times close text-dark"></span>
         </button>
-        <div class="collapse Navbar-collapse" id="NavbarNavAltMarkup">
-          <div class="Navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">
-              Home
-            </a>
-            <a class="nav-link" href="#">
-              Features
-            </a>
-            <a class="nav-link" href="#">
-              Pricing
-            </a>
-            <a class="nav-link disabled" aria-disabled="true">
-              Disabled
-            </a>
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNavAltMarkup"
+        >
+          <div className="navbar-nav fs-5">
+            <NavLink activeClassName="active" to="/" className="nav-link">
+              Characters
+            </NavLink>
+            <NavLink to="/episodes" className="nav-link">
+              Episode
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              className="nav-link"
+              to="/location"
+            >
+              Location
+            </NavLink>
           </div>
         </div>
       </div>
